@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+      crossorigin="anonymous"/>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw==" crossorigin="anonymous"></script>
+
+  </head>
+  <body class="oscuro">
+    <header class="width100">
+      <h1 class="title">Generador de memes</h1>
+      <div class="row" >
+        <button class="button" id="button-img"><i class="far fa-image"></i> Imagen</button>
+        <button class="button" id="button-text"><i class="fas fa-font"></i>Texto</button>
+        <button class="button" id="claroOscuro"><i class="fas fa-lightbulb"></i>Modo Oscuro</button>
+      </div>
+    </header>
+
+    <main class="col">
+      <div id="meme-container">
+        <p class="meme-text" id="memeTextTop">TOP TEXT</p>
+        <div id="meme-image"></div>
+        <p class="meme-text" id="memetextBottom"> BOTTOM TEXT</p>
+      </div>
+      <div>
+        <button id="btn-download">Descargar meme</button>
+      </div>
+    </main>
+
+      <aside class="aside-position"id="panelAside">
+        <button class="cerrar"id="button-close">
+          <i class="fas fa-window-close" ></i></button>
+        <section id="panel-image">
+          <h4>IMAGEN</h4>
+          <h3 class="margintop5">URL</h3>
+          <input type="text" id="input-url" class="width100">
+         <div>
+          <h3 class="margintop5">FONDO</h3>
+          <div class="flex-row margintop5" id="contendorInputFondo">
+            <div class="contenedorInput">
+            <input type="color" value="#FFFFFF" id="colorFondoImagen">
+              <span id="spanColorFondo"> #FFFFFF</span>
+            </div>
+          <div class="optionsFondo">
+            <select name="TipoDeFondo" id="TipoDeFondo" >
+              <option value="unset">Ninguno</option>
+              <option value="lighten">Aclarar</option>
+              <option value="darken">Oscurecer</option>
+              <option value="difference">Diferencia</option>
+              <option value="luminosity">Luminosidad</option>
+              <option value="multiply">Multiplicar</option>
+            </select>
+          </div>
+        </div>
+         </div>
+
+         <div class="margintop5">
+           <h3>FILTROS</h3>
+           <div class="margintop5"><label for="">BRILLO</label>
+            <input type="range" id="brillo" value="0.5" min="0" max="1" step="0.1"></div>
+           <div class="margintop5"><label for="">OPACIDAD</label>
+            <input type="range" id="opacidad"value="0.5" min="0" max="1" step="0.1"></div>
+           <div class="margintop5"><label for="">CONTRASTE</label>
+            <input type="range" id="contraste"value="100" min="100" max="1000"></div>
+           <div class="margintop5"><label for="">DESENFOQUE</label>
+            <input type="range" id="desenfoque"value="0" min="0" max="10" step="0.1"></div>
+           <div class="margintop5"><label for="">ESCALA DE GRISES</label>
+            <input type="range" id="grises" value="0"min="0" max="100"></div>
+           <div class="margintop5"><label for="">SEPIA</label>
+            <input type="range" id="sepia" value="0"min="0" max="100"></div>
+           <div class="margintop5"><label for="">HUE</label>
+            <input type="range" id="hue" value="0"min="0" max="360"></div>
+           <div class="margintop5"><label for="">SATURADO</label>
+            <input type="range" id="saturado" value="100"min="100" max="1000" step="10"></div>
+           <div class="margintop5"><label for="">NEGATIVO</label>
+            <input type="range"id="negativo" value="0"min="0" max="1" step="0.1"></div>
+          </div>
+          <button id="resetButton">Restablecer filtros</button>
+
+        </section>
+        <section id="panel-text" class="ocultar">
+          <h4>TEXTO</h4>
+          <div class="col">
+            <h3>SUPERIOR</h3>
+            <textarea name="superior" id="topText" cols="20" rows="2" placeholder="TOP TEXT"></textarea>
+            <input type="checkbox" id="checkboxarriba">
+            <label for="">Sin texto superior</label>
+          </div>
+
+          <div class="col">
+            <h3>INFERIOR</h3>
+            <textarea name="interior" id="bottomText" cols="20" rows="2" placeholder="BOTTOM TEXT"></textarea>
+            <input type="checkbox" id="checkboxabajo">
+            <label for="checkboxabajo">Sin texto inferior</label>
+          </div>
+        
+          <div>
+            <h3>FUENTE</h3>
+            <select name="" id="tipo-de-letra">
+            <option value="Arial">Arial</option>
+            <option value="Arial Black">Arial Black</option>
+            <option value="American typewriter">American typewriter</option>
+            <option value="Andale Mono">Andale Mono</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+            <option value="Helvetica">Helvetica</option>
+            <option value="Impact">Impact</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Times New Roman">Times New Roman</option>
+          </select>
+          <div class="flex-row">
+            <input type="number" min="12" value="40" max="50" id="fontSize">
+            <div class="buttons-container">
+              <button class="left"><i class="fas fa-align-left"></i></button>
+              <button class="center"><i class="fas fa-align-center"></i></button>
+              <button class="right"> <i class="fas fa-align-right"></i></button>
+            </div>
+          </div>
+          <div class="panel-control">
+            <div class="flex-row">
+            <div class="panel-control-column">
+              <h3>COLOR</h3><input id="inputColor" type="color" value="#000000"><span id="colorLetraPanelTexto"> #000000</span>
+            </div>
+            <div class="panel-control-column">
+              <h3>FONDO</h3><input id="colorFondoTexto" type="color" value="#FFFFFF"><span id="colorFondoPanelTexto"> #FFFFFF</span>
+            </div>
+          </div>
+            <input type="checkbox" id="fondoTransparente">
+            <label for="fondoTransparente">Fondo transparente</label>
+          </div>
+          <div class="panel-control">
+            <h3>CONTORNO</h3>
+            <div class="buttons-container">
+            <button id="sinContorno">Ninguno</button>
+            <button id="contornoClaro">Claro</button>
+            <button id="contornoOscuro">Oscuro</button>
+          </div>
+          <div>
+            <h3>Espaciado</h3>
+            <input type="number" min=0 max=80 id="espaciado">
+          </div>
+          <div>
+            <h3>Interlineado</h3>
+           <select name="interlineado" id="interlineado">
+          <option value="0.8">0.8</option>
+           <option value="1">1</option>
+           <option value="1.2">1.2</option>
+           <option value="1.5">1.5</option>
+           <option value="2">2</option>
+           <option value="2.5">2.5</option></select>
+          </div>
+        </div>
+        </section>
+      </aside>
+</body>
+  <script src="app.js"></script>
+</html>
