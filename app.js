@@ -1,10 +1,11 @@
+
 "use strict";
-//LLamo al panel aside y al boton cruz
+
 
 const panelAside = document.querySelector("#panelAside");
 const buttonClose = document.querySelector("#button-close");
 
-//cuando hago click en boton CRUZ se cierra el panel(aside completo)
+//para cerrar el panel del aside 
 
 buttonClose.addEventListener("click", () => {
   panelAside.classList.add("ocultar");
@@ -16,12 +17,7 @@ const panelText = document.querySelector("#panel-text");
 const buttonImg = document.querySelector("#button-img");
 const buttonText = document.querySelector("#button-text");
 
-// --------VER PANEL IMAGEN--------
-buttonImg.addEventListener("click", () => {
-  panelAside.classList.remove("ocultar");
-  panelText.classList.add("ocultar");
-  panelImg.classList.remove("ocultar");
-});
+
 
 // --------VER PANEL TEXTO--------
 buttonText.addEventListener("click", () => {
@@ -29,28 +25,6 @@ buttonText.addEventListener("click", () => {
   panelText.classList.remove("ocultar");
   panelImg.classList.add("ocultar");
 });
-
-//--------MODO CLARO/OSCURO--------------//
-const body = document.querySelector("body");
-const claroOscuro = document.querySelector("#claroOscuro");
-
-claroOscuro.addEventListener("click", () => {
-  body.classList.toggle("modoClaro");
-  body.classList.toggle("oscuro");
-
-  if (claroOscuro.innerText == "Modo Claro") {
-    claroOscuro.innerText = "Modo Oscuro";
-  } else {
-    claroOscuro.innerText = "Modo Claro";
-  }
-});
-
-
-
-
-
-
-
 
 
 //-------- PANEL TEXTO ------------//
@@ -97,18 +71,6 @@ sinTextoInferior.addEventListener("change", () => {
     bottomText.disabled = false;
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //------SELECT tipo de letra-----
@@ -221,108 +183,6 @@ interlineado.addEventListener("input", () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//--------PANEL IMAGEN-----------//
-const imagenmeme = document.querySelector("#meme-image");
-const inputurl = document.querySelector("#input-url");
-inputurl.addEventListener("change", () => {
-  imagenmeme.style.backgroundImage = `url("${inputurl.value}")`;
-});
-
-//---- FONDO IMAGEN -----//
-const inputColorFondoImagen = document.querySelector("#colorFondoImagen");
-const spanColorFondo = document.querySelector("#spanColorFondo");
-inputColorFondoImagen.addEventListener("input", () => {
-  imagenmeme.style.backgroundColor = inputColorFondoImagen.value;
-  spanColorFondo.textContent = inputColorFondoImagen.value;
-});
-
-//---- Tipos de fondo  ---//
-const tipoDeFondo = document.querySelector("#TipoDeFondo");
-tipoDeFondo.addEventListener("input", () => {
-  imagenmeme.style.backgroundBlendMode = tipoDeFondo.value;
-});
-
-//FILTROS DE IMAGEN
-const brillo = document.getElementById("brillo");
-const opacidad = document.getElementById("opacidad");
-const contraste = document.getElementById("contraste");
-const desenfoque = document.getElementById("desenfoque");
-const grises = document.getElementById("grises");
-const sepia = document.getElementById("sepia");
-const hue = document.getElementById("hue");
-const saturado = document.getElementById("saturado");
-const negativo = document.getElementById("negativo");
-
-const addFilters = () => {
-  imagenmeme.style.filter = `brightness(${brillo.value}) 
-    opacity(${opacidad.value}) contrast(${contraste.value}%) 
-    blur(${desenfoque.value}px) grayscale(${grises.value}%) 
-    sepia(${sepia.value}%) hue-rotate(${hue.value}deg) 
-    saturate(${saturado.value}%) invert(${negativo.value})`;
-};
-
-brillo.addEventListener("change", addFilters);
-opacidad.addEventListener("change", addFilters);
-contraste.addEventListener("change", addFilters);
-desenfoque.addEventListener("change", addFilters);
-grises.addEventListener("change", addFilters);
-sepia.addEventListener("change", addFilters);
-hue.addEventListener("change", addFilters);
-saturado.addEventListener("change", addFilters);
-negativo.addEventListener("change", addFilters);
-
-//REESTABLECER FILTROS
-const resetButton = document.getElementById("resetButton");
-const resetFiltros = () => {
-  brillo.value = 1;
-  opacidad.value = 1;
-  contraste.value = 100;
-  desenfoque.value = 0;
-  grises.value = 0;
-  sepia.value = 0;
-  hue.value = 0;
-  saturado.value = 100;
-  negativo.value = 0;
-};
-
-resetButton.addEventListener("click", () => {
-  resetFiltros();
-  addFilters();
-});
-//Boton descarga
-
-const botonDescargar = document.querySelector("#btn-download");
-const imgContainer = document.querySelector("#meme-container");
-
-botonDescargar.addEventListener("click", () => {
-  domtoimage.toBlob(imgContainer).then(function (blob) {
-    window.saveAs(blob, "meme.png");
-  });
-});
 
 
 
